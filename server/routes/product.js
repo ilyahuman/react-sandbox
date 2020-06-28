@@ -1,12 +1,12 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product')
+const Product = require('../models/Product');
 
 const data = [
     {
         "image": "https://image.shutterstock.com/z/stock-photo-pair-of-white-sneakers-isolated-on-white-background-sport-shoes-712448377.jpg",
         "name": "Sport Shoes",
-        "price": 110
+        "price": '110'
     },
     {
         "image": "https://image.shutterstock.com/z/stock-photo-vintage-red-shoes-on-white-background-92008067.jpg",
@@ -56,7 +56,9 @@ router.post('/set', async (req, res) => {
 })
 
 router.post('/clear', (req, res) => {
-    Product.remove({});
+    Product.deleteMany({}, (error) => {
+        if (error) console.log(error);
+    });
     res.send('Clear')
 })
 
